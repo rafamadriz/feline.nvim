@@ -3,7 +3,7 @@ local fn = vim.fn
 local M = {}
 
 function M.position()
-    return string.format('%d:%d', fn.line('.'), fn.col('.'))
+    return string.format('%3d:%-2d', fn.line('.'), fn.col('.'))
 end
 
 function M.line_percentage()
@@ -15,7 +15,7 @@ function M.line_percentage()
     elseif curr_line == lines then
         return "Bot"
     else
-        return fn.round(curr_line / lines * 100) .. '%%'
+        return string.format('%2d%%%%', fn.round(curr_line / lines * 100))
     end
 end
 
