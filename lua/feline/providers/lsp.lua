@@ -1,4 +1,5 @@
 local lsp = vim.lsp
+local icons = require("feline.defaults").separators
 local get_current_buf = vim.api.nvim_get_current_buf
 local M = {}
 
@@ -6,50 +7,63 @@ function M.is_lsp_attached()
     return next(lsp.buf_get_clients()) ~= nil
 end
 
-function M.get_diagnostics_count(severity)
-    if not M.is_lsp_attached() then return nil end
-
-    local bufnr = get_current_buf()
-    local active_clients = lsp.buf_get_clients(bufnr)
-    local count = 0
-
-    for _, client in pairs(active_clients) do
-        count = count + lsp.diagnostic.get_count(bufnr, severity, client.id)
+function M.lsp_connected()
+    if not vim.tbl_isempty(lsp.buf_get_clients(0)) then
+        return icons.connected
+    else
+        return ""
     end
-
-    return count
 end
 
-function M.diagnostics_exist(severity)
-    local diagnostics_count = M.get_diagnostics_count(severity)
-    return diagnostics_count and diagnostics_count > 0
+function M.get_diagnostics_count(severity)
+    local count = vim.lsp.diagnostic.get_count(0, severity)
+    return (count > 0) and count or ""
 end
 
 function M.lsp_client_names(component)
     local clients = {}
-    local icon = component.icon or ' '
+    if clients == nil then
+        return ""
+    end
+    local icon = component.icon or " "
 
     for _, client in pairs(lsp.buf_get_clients()) do
-        clients[#clients+1] = icon .. client.name
+        clients[#clients + 1] = icon .. client.name
     end
 
-    return table.concat(clients, ' ')
+    return table.concat(clients, " ")
 end
 
 function M.diagnostic_errors(component)
-    return (component.icon or '  ') .. M.get_diagnostics_count('Error')
+    if vim.lsp.diagnostic.get_count(0, "Error") > 0 then
+        return (component.icon or "  ") .. M.get_diagnostics_count("Error")
+    else
+        return ""
+    end
 end
 
 function M.diagnostic_warnings(component)
-    return (component.icon or '  ') .. M.get_diagnostics_count('Warning')
+    if vim.lsp.diagnostic.get_count(0, "Warning") > 0 then
+        return (component.icon or "  ") .. M.get_diagnostics_count("Warning")
+    else
+        return ""
+    end
 end
 
 function M.diagnostic_hints(component)
-    return (component.icon or '  ') .. M.get_diagnostics_count('Hint')
+    if vim.lsp.diagnostic.get_count(0, "Hint") > 0 then
+        return (component.icon or "  ") .. M.get_diagnostics_count("Hint")
+    else
+        return ""
+    end
 end
 
 function M.diagnostic_info(component)
-    return (component.icon or '  ') .. M.get_diagnostics_count('Information')
+    if vim.lsp.diagnostic.get_count(0, "Information") > 0 then
+        return (component.icon or "  ") .. M.get_diagnostics_count("Information")
+    else
+        return ""
+    end
 end
 
 return M
