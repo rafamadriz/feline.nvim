@@ -91,8 +91,12 @@ M.components.left.active[4] = {
                 bg = "bg"
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
         },
         ' '
+=======
+        }
+>>>>>>> 3cb84d5 (new providers)
 =======
         }
 >>>>>>> 3cb84d5 (new providers)
@@ -101,7 +105,12 @@ M.components.left.active[4] = {
 
 M.components.left.active[5] = {
 <<<<<<< HEAD
+<<<<<<< HEAD
     provider = 'position',
+=======
+    provider = "position",
+    left_sep = " ",
+>>>>>>> 3cb84d5 (new providers)
 =======
     provider = "position",
     left_sep = " ",
@@ -110,7 +119,12 @@ M.components.left.active[5] = {
         ' ',
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             str = 'slant_right_2_thin',
+=======
+            " ",
+            str = "slant_right_2_thin",
+>>>>>>> 3cb84d5 (new providers)
 =======
             " ",
             str = "slant_right_2_thin",

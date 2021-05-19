@@ -4,8 +4,14 @@ local fn = vim.fn
 local M = {}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 function M.position()
     return string.format('%d:%d', fn.line('.'), fn.col('.'))
+=======
+function M.position(component)
+    local icon = component.icon or icons.line_number
+    return string.format("%s %3d:%-2d", icon, fn.line("."), fn.col("."))
+>>>>>>> 3cb84d5 (new providers)
 =======
 function M.position(component)
     local icon = component.icon or icons.line_number
@@ -24,7 +30,11 @@ function M.line_percentage(component)
         return icons.page .. " " .. "Bot"
     else
 <<<<<<< HEAD
+<<<<<<< HEAD
         return fn.round(curr_line / lines * 100) .. '%%'
+=======
+        return string.format("%s %2d%%%%", icon, fn.round(curr_line / lines * 100))
+>>>>>>> 3cb84d5 (new providers)
 =======
         return string.format("%s %2d%%%%", icon, fn.round(curr_line / lines * 100))
 >>>>>>> 3cb84d5 (new providers)
