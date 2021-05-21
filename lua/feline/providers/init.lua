@@ -35,6 +35,11 @@ M.diagnostic_warnings = lsp.diagnostic_warnings
 M.diagnostic_hints = lsp.diagnostic_hints
 M.diagnostic_info = lsp.diagnostic_info
 
+M.diag_errors_num = lsp.diagnostic_errors_num
+M.diag_warnings_num = lsp.diagnostic_warnings_num
+M.diag_hints_num = lsp.diagnostic_hints_num
+M.diag_info_num = lsp.diagnostic_info_num
+
 function M.add_provider(name, provider)
     if M[name] then
         print("Provider " .. name .. " already exists! Please try using another name")

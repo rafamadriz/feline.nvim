@@ -7,7 +7,7 @@ function M.git_branch(component)
     if gsd and gsd.head and #gsd.head > 0 then
         local git = " " .. icons.git .. " "
         local icon = component.icon or git
-        return icon .. gsd.head
+        return icon .. gsd.head .. " "
     else
         return ""
     end

@@ -5,7 +5,7 @@ local M = {}
 
 function M.position(component)
     local icon = component.icon or icons.line_number
-    return string.format("%s %3d:%-2d", icon, fn.line("."), fn.col("."))
+    return string.format("%s%3d:%-3d", icon, fn.line("."), fn.col("."))
 end
 
 function M.line_percentage(component)
@@ -14,9 +14,9 @@ function M.line_percentage(component)
     local icon = component.icon or icons.page
 
     if curr_line == 1 then
-        return icons.page .. " " .. "Top"
+        return icon .. " " .. "Top"
     elseif curr_line == lines then
-        return icons.page .. " " .. "Bot"
+        return icon .. " " .. "Bot"
     else
         return string.format("%s %2d%%%%", icon, fn.round(curr_line / lines * 100))
     end

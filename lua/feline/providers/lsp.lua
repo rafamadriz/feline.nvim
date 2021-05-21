@@ -7,9 +7,9 @@ function M.is_lsp_attached()
     return next(lsp.buf_get_clients()) ~= nil
 end
 
-function M.lsp_connected()
+function M.lsp_connected(component)
     if not vim.tbl_isempty(lsp.buf_get_clients(0)) then
-        return icons.connected
+        return component.icon or icons.connected .. " "
     else
         return ""
     end
@@ -61,6 +61,38 @@ end
 function M.diagnostic_info(component)
     if vim.lsp.diagnostic.get_count(0, "Information") > 0 then
         return (component.icon or "  ") .. M.get_diagnostics_count("Information")
+    else
+        return ""
+    end
+end
+
+function M.diagnostic_errors_num(component)
+    if vim.lsp.diagnostic.get_count(0, "Error") > 0 then
+        return " " .. M.get_diagnostics_count("Error") .. " "
+    else
+        return ""
+    end
+end
+
+function M.diagnostic_warnings_num(component)
+    if vim.lsp.diagnostic.get_count(0, "Warning") > 0 then
+        return " " .. M.get_diagnostics_count("Warning") .. " "
+    else
+        return ""
+    end
+end
+
+function M.diagnostic_hints_num(component)
+    if vim.lsp.diagnostic.get_count(0, "Hint") > 0 then
+        return " " .. M.get_diagnostics_count("Hint") .. " "
+    else
+        return ""
+    end
+end
+
+function M.diagnostic_info_num(component)
+    if vim.lsp.diagnostic.get_count(0, "Information") > 0 then
+        return " " .. M.get_diagnostics_count("Information") .. " "
     else
         return ""
     end

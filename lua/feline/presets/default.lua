@@ -111,28 +111,34 @@ M.components.left.active[5] = {
 
 M.components.left.active[6] = {
     provider = "diagnostic_errors",
+    enabled = function()
+        return lsp.diagnostics_exist("Error")
+    end,
     hl = {fg = "red"}
 }
 
 M.components.left.active[7] = {
     provider = "diagnostic_warnings",
+    enabled = function()
+        return lsp.diagnostics_exist("Warning")
+    end,
     hl = {fg = "yellow"}
 }
 
 M.components.left.active[8] = {
     provider = "diagnostic_hints",
+    enabled = function()
+        return lsp.diagnostics_exist("Hint")
+    end,
     hl = {fg = "cyan"}
 }
 
 M.components.left.active[9] = {
     provider = "diagnostic_info",
+    enabled = function()
+        return lsp.diagnostics_exist("Information")
+    end,
     hl = {fg = "skyblue"}
-}
-
-M.components.left.active[10] = {
-    provider = "lsp_connected",
-    hl = {fg = "skyblue"},
-    left_sep = " "
 }
 
 M.components.right.active[1] = {
@@ -189,15 +195,6 @@ M.components.right.active[4] = {
 }
 
 M.components.right.active[5] = {
-    provider = "tab_width",
-    hl = {
-        fg = "skyblue",
-        style = "bold"
-    },
-    left_sep = " "
-}
-
-M.components.right.active[6] = {
     provider = "line_percentage",
     hl = {
         style = "bold"
@@ -206,7 +203,7 @@ M.components.right.active[6] = {
     right_sep = " "
 }
 
-M.components.right.active[7] = {
+M.components.right.active[6] = {
     provider = "scroll_bar",
     hl = {
         fg = "skyblue",

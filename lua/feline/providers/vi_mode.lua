@@ -1,5 +1,6 @@
 local fn = vim.fn
 local colors = require("feline.defaults").colors
+local icons = require("feline.defaults").separators
 
 local M = {}
 
@@ -37,20 +38,20 @@ local mode_alias = {
 }
 
 M.mode_colors = {
-    NORMAL = colors.green,
-    OP = colors.green,
-    INSERT = colors.red,
-    VISUAL = colors.skyblue,
-    BLOCK = colors.skyblue,
-    REPLACE = colors.violet,
-    ["V-REPLACE"] = colors.violet,
-    ENTER = colors.cyan,
-    MORE = colors.cyan,
-    SELECT = colors.orange,
-    COMMAND = colors.green,
-    SHELL = colors.green,
-    TERM = colors.green,
-    NONE = colors.yellow
+    NORMAL = colors.normal,
+    OP = colors.op,
+    INSERT = colors.insert,
+    VISUAL = colors.visual,
+    BLOCK = colors.visual,
+    REPLACE = colors.replace,
+    ["V-REPLACE"] = colors.replace,
+    ENTER = colors.op,
+    MORE = colors.dark,
+    SELECT = colors.visual,
+    COMMAND = colors.command,
+    SHELL = colors.light,
+    TERM = colors.light,
+    NONE = colors.light
 }
 
 -- Functions for statusline

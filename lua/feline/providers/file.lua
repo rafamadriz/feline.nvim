@@ -26,7 +26,7 @@ function M.file_info(component)
     end
     local icon = file_icon(component, filename, extension)
     local modified_str = is_modified(component)
-    return icon .. " " .. filename .. " " .. modified_str
+    return " " .. icon .. " " .. filename .. " " .. modified_str
 end
 
 function M.file_info_and_dir(component)
@@ -38,7 +38,7 @@ function M.file_info_and_dir(component)
     local dir = fn.expand("%:p:h:t")
     local modified_str = is_modified(component)
     local icon = file_icon(component, filename, extension)
-    return string.format("%s %s/%s %s", icon, dir, filename, modified_str)
+    return string.format(" %s %s/%s %s", icon, dir, filename, modified_str)
 end
 
 function M.file_size()
@@ -56,7 +56,12 @@ function M.file_size()
 end
 
 function M.file_type()
-    return bo.filetype:upper()
+    local type = bo.filetype
+    if type == "" then
+        return "no ft"
+    else
+        return type:upper()
+    end
 end
 
 function M.file_encoding(component)
@@ -66,9 +71,9 @@ function M.file_encoding(component)
         os = ""
     end
     if component.upper == false then
-        return os .. enc
+        return os .. " " .. enc
     else
-        return os .. enc:upper()
+        return os .. " " .. enc:upper()
     end
 end
 
@@ -83,7 +88,7 @@ end
 function M.file_readonly(component)
     local icon = component.icon or icons.locker
     if bo.readonly then
-        return icon
+        return icon .. " "
     else
         return ""
     end
