@@ -17,15 +17,15 @@ M.colors = {
     white = "#FFFFFF",
     yellow = "#E1E120",
     warning = "#fabd2f",
-    hint = "#4db5bd",
+    hint = "#83a598",
     info = "#a0c980",
     error = "#ea6962"
 }
 
 M.separators = {
-    dos = "",
-    unix = "",
-    mac = "",
+    dos = " ",
+    unix = " ",
+    mac = " ",
     square = "❖",
     pencil = "",
     circle = "●",

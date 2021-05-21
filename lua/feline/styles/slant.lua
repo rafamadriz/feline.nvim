@@ -29,7 +29,7 @@ table.insert(
 table.insert(
     components.left.active,
     {
-        provider = icons.right_filled,
+        provider = icons.slant_right,
         hl = function()
             local val = {}
             val.fg = vi_mode_utils.get_mode_color()
@@ -41,17 +41,30 @@ table.insert(
 table.insert(
     components.left.active,
     {
-        provider = "git_branch",
-        hl = {bg = "bg2", fg = "light", style = "bold"},
-        right_sep = {str = icons.right_filled, hl = {fg = "bg2", bg = "bg1"}}
+        provider = "file_info",
+        hl = {fg = "dark", bg = "bg2", style = "bold"}
     }
 )
 table.insert(
     components.left.active,
     {
-        provider = "file_info",
-        hl = {fg = "light", bg = "bg1", style = "bold"},
-        right_sep = {str = icons.right_filled, hl = {bg = "dark", fg = "bg1"}}
+        provider = icons.slant_left,
+        hl = {bg = "bg2", fg = "dark"},
+        enabled = function()
+            return vim.b.gitsigns_status_dict
+        end,
+        right_sep = ""
+    }
+)
+table.insert(
+    components.left.active,
+    {
+        provider = icons.slant_left,
+        hl = {fg = "bg", bg = "bg2"},
+        enabled = function()
+            return not vim.b.gitsigns_status_dict
+        end,
+        right_sep = ""
     }
 )
 table.insert(
@@ -61,22 +74,37 @@ table.insert(
         enabled = function()
             return vim.bo.readonly
         end,
-        hl = {fg = "red", style = "bold", bg = "dark"},
-        left_sep = {str = " ", hl = {bg = "dark"}}
+        hl = {fg = "red", style = "bold"}
+    }
+)
+table.insert(
+    components.left.active,
+    {
+        provider = "git_branch",
+        hl = {bg = "dark", fg = "light", style = "bold"},
+        enabled = function()
+            return vim.b.gitsigns_status_dict
+        end
     }
 )
 table.insert(
     components.left.active,
     {
         provider = "git_diff_added",
-        hl = {fg = "green", style = "bold", bg = "dark"}
+        hl = {fg = "green", style = "bold", bg = "dark"},
+        enabled = function()
+            return vim.b.gitsigns_status_dict
+        end
     }
 )
 table.insert(
     components.left.active,
     {
         provider = "git_diff_changed",
-        hl = {fg = "yellow", style = "bold", bg = "dark"}
+        hl = {fg = "yellow", style = "bold", bg = "dark"},
+        enabled = function()
+            return vim.b.gitsigns_status_dict
+        end
     }
 )
 table.insert(
@@ -84,7 +112,19 @@ table.insert(
     {
         provider = "git_diff_removed",
         hl = {fg = "red", style = "bold", bg = "dark"},
-        right_sep = {str = icons.right_filled, hl = {bg = "bg2", fg = "dark"}}
+        enabled = function()
+            return vim.b.gitsigns_status_dict
+        end
+    }
+)
+table.insert(
+    components.left.active,
+    {
+        provider = icons.slant_right,
+        hl = {fg = "dark"},
+        enabled = function()
+            return vim.b.gitsigns_status_dict
+        end
     }
 )
 
@@ -93,144 +133,61 @@ table.insert(
 table.insert(
     components.right.active,
     {
-        provider = icons.left_filled,
-        hl = {fg = "bg", bg = "bg2"},
-        enabled = function()
-            return _if.diag_exist()
-        end
+        provider = "diag_errors_num",
+        hl = {fg = "bg", bg = "error", style = "bold"},
+        left_sep = {str = icons.slant_left, hl = {fg = "error", bg = "bg"}},
+        right_sep = {str = icons.slant_left, hl = {fg = "warning", bg = "red"}}
     }
 )
 table.insert(
     components.right.active,
     {
-        provider = "diagnostic_errors",
-        hl = {fg = "error"}
+        provider = "diag_warnings_num",
+        hl = {fg = "bg", bg = "warning", style = "bold"},
+        right_sep = {str = icons.slant_left, hl = {fg = "info", bg = "warning"}}
     }
 )
 table.insert(
     components.right.active,
     {
-        provider = "diagnostic_warnings",
-        hl = {fg = "warning"}
+        provider = "diag_info_num",
+        hl = {fg = "bg", bg = "info", style = "bold"},
+        right_sep = {str = icons.slant_left, hl = {fg = "hint", bg = "info"}}
     }
 )
 table.insert(
     components.right.active,
     {
-        provider = "diagnostic_hints",
-        hl = {fg = "hint"}
-    }
-)
-table.insert(
-    components.right.active,
-    {
-        provider = "diagnostic_info",
-        hl = {fg = "info"}
-    }
-)
-table.insert(
-    components.right.active,
-    {
-        provider = icons.left_filled,
-        hl = {fg = "dark"},
-        left_sep = " ",
-        enabled = function()
-            return _if.diag_exist()
-        end
-    }
-)
-table.insert(
-    components.right.active,
-    {
-        provider = icons.left_filled,
-        hl = {bg = "bg2", fg = "dark"},
-        enabled = function()
-            return not _if.diag_exist()
-        end
+        provider = "diag_hints_num",
+        hl = {fg = "bg", bg = "hint", style = "bold"},
+        right_sep = {str = icons.slant_left, hl = {fg = "dark", bg = "hint"}}
     }
 )
 table.insert(
     components.right.active,
     {
         provider = "file_encoding",
-        hl = {style = "bold", bg = "dark"},
         upper = false,
-        right_sep = {str = " ", hl = {bg = "dark"}}
-    }
-)
-table.insert(
-    components.right.active,
-    {
-        provider = "",
-        left_sep = {str = icons.left_filled, hl = {fg = "bg1", bg = "dark"}},
-        right_sep = {str = " ", hl = {bg = "bg1"}}
+        hl = {style = "bold", bg = "dark"},
+        right_sep = {str = "|", hl = {bg = "dark"}}
     }
 )
 table.insert(
     components.right.active,
     {
         provider = "file_type",
-        hl = {style = "bold", bg = "bg1"},
-        right_sep = {str = " ", hl = {bg = "bg1"}}
+        upper = false,
+        hl = {style = "bold", bg = "dark", fg = "op"}
     }
 )
 table.insert(
     components.right.active,
     {
-        provider = "lsp_connected",
-        enabled = function()
-            return not vim.tbl_isempty(vim.lsp.buf_get_clients(0))
-        end,
-        hl = {style = "bold", fg = "connected", bg = "bg1"},
-        right_sep = {str = " ", hl = {bg = "bg1"}}
-    }
-)
-
-table.insert(
-    components.right.active,
-    {
-        provider = icons.left_filled,
-        hl = function()
-            local val = {}
-            val.fg = vi_mode_utils.get_mode_color()
-            val.bg = "bg1"
-            return val
-        end
-    }
-)
-table.insert(
-    components.right.active,
-    {
-        provider = " ",
-        hl = function()
-            local val = {}
-            val.bg = vi_mode_utils.get_mode_color()
-            return val
-        end
-    }
-)
-table.insert(
-    components.right.active,
-    {
-        provider = "line_percentage",
+        provider = icons.slant_right,
         hl = function()
             local val = {}
             val.bg = vi_mode_utils.get_mode_color()
             val.fg = "dark"
-            val.style = "bold"
-            return val
-        end
-    }
-)
-table.insert(
-    components.right.active,
-    {
-        provider = " " .. icons.left .. " ",
-        hl = function()
-            local val = {}
-            val.bg = vi_mode_utils.get_mode_color()
-            val.fg = "dark"
-            val.style = "bold"
             return val
         end
     }
@@ -239,6 +196,24 @@ table.insert(
     components.right.active,
     {
         provider = "position",
+        icon = "",
+        hl = function()
+            local val = {}
+            val.bg = vi_mode_utils.get_mode_color()
+            val.fg = "dark"
+            val.style = "bold"
+            return val
+        end
+    }
+)
+table.insert(
+    components.right.active,
+    {
+        provider = function()
+            local curr_line = vim.fn.line(".")
+            local lines = vim.fn.line("$")
+            return string.format("| %2d%%%% ", vim.fn.round(curr_line / lines * 100))
+        end,
         hl = function()
             local val = {}
             val.bg = vi_mode_utils.get_mode_color()

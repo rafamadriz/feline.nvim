@@ -35,7 +35,7 @@ M.gruvbox = {
         insert = "#83a598",
         replace = "#689d6a",
         command = "#458588",
-        op = "#b16286"
+        op = "#83a598"
     }
 }
 M.nord = {
@@ -59,7 +59,7 @@ M.neon = {
     default_bg = "#333644",
     colors = {
         bg1 = "#363a49",
-        bg2 = "#404455",
+        bg2 = "#676E95",
         dark = "#2b2d37",
         light = "#c5cdd9",
         normal = "#a9a1e1",

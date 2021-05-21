@@ -148,7 +148,6 @@ table.insert(
         hl = function()
             local val = {}
 
-            val.name = vi_mode_utils.get_mode_highlight_name()
             val.bg = vi_mode_utils.get_mode_color()
             val.fg = "dark"
             val.style = "bold"
@@ -179,7 +178,6 @@ table.insert(
         hl = function()
             local val = {}
 
-            val.name = vi_mode_utils.get_mode_highlight_name()
             val.bg = vi_mode_utils.get_mode_color()
             val.fg = "dark"
             val.style = "bold"

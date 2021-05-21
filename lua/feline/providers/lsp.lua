@@ -3,6 +3,19 @@ local icons = require("feline.defaults").separators
 local get_current_buf = vim.api.nvim_get_current_buf
 local M = {}
 
+function M.diag_exist()
+    local inf = vim.lsp.diagnostic.get_count(0, "Information")
+    local war = vim.lsp.diagnostic.get_count(0, "warning")
+    local err = vim.lsp.diagnostic.get_count(0, "Error")
+    local hi = vim.lsp.diagnostic.get_count(0, "Hint")
+    local count = inf + war + err + hi
+    if count <= 0 then
+        return false
+    else
+        return true
+    end
+end
+
 function M.is_lsp_attached()
     return next(lsp.buf_get_clients()) ~= nil
 end
