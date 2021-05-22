@@ -133,6 +133,14 @@ table.insert(
 table.insert(
     components.right.active,
     {
+        provider = "lsp_connected",
+        hl = {fg = "connected"},
+        right_sep = " "
+    }
+)
+table.insert(
+    components.right.active,
+    {
         provider = "diag_errors_num",
         hl = {fg = "bg", bg = "error", style = "bold"},
         left_sep = {str = icons.slant_left, hl = {fg = "error", bg = "bg"}},
