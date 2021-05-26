@@ -1,9 +1,9 @@
 local M = {}
 
-if Theming.statusline_color == nil or Theming.statusline_color:gsub("%s+", "") == "" then
+if vim.g.neon_statusline_color == nil or vim.g.neon_statusline_color:gsub("%s+", "") == "" then
     M.status_color = "nord"
 else
-    M.status_color = Theming.statusline_color:gsub("%s+", "")
+    M.status_color = vim.g.neon_statusline_color:gsub("%s+", "")
 end
 
 M.wombat = {
