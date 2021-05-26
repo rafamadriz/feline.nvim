@@ -14,11 +14,11 @@ function M.line_percentage(component)
     local icon = component.icon or icons.page
 
     if curr_line == 1 then
-        return icon .. " " .. "Top"
+        return icon .. "  Top"
     elseif curr_line == lines then
-        return icon .. " " .. "Bot"
+        return icon .. "  Bot"
     else
-        return string.format("%s %2d%%%%", icon, fn.round(curr_line / lines * 100))
+        return string.format("%s %3d%%%%", icon, fn.round(curr_line / lines * 100))
     end
 end
 
