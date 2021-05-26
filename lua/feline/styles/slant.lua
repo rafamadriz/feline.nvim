@@ -220,7 +220,7 @@ table.insert(
         provider = function()
             local curr_line = vim.fn.line(".")
             local lines = vim.fn.line("$")
-            return string.format("| %2d%%%% ", vim.fn.round(curr_line / lines * 100))
+            return string.format("| %3d%%%% ", vim.fn.round(curr_line / lines * 100))
         end,
         hl = function()
             local val = {}
