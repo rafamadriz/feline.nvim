@@ -5,7 +5,7 @@ local M = {}
 
 function M.position(component)
     local icon = component.icon or icons.line_number
-    return string.format("%s%3d:%-2d", icon, fn.line("."), fn.col("."))
+    return string.format("%s%4d:%-3d", icon, fn.line("."), fn.col("."))
 end
 
 function M.line_percentage(component)
