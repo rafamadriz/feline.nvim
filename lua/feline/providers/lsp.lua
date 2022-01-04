@@ -4,11 +4,11 @@ local get_current_buf = vim.api.nvim_get_current_buf
 local M = {}
 
 function M.diag_exist()
-	local lsp = vim.lsp.diagnostic
-	local inf = lsp.get_count(0, "Information")
-	local war = lsp.get_count(0, "warning")
-	local err = lsp.get_count(0, "Error")
-	local hi = lsp.get_count(0, "Hint")
+	local diagnostic = vim.diagnostic
+	local inf = vim.tbl_count(diagnostic.get(0, { severity = diagnostic.severity.INFO }))
+	local war = vim.tbl_count(diagnostic.get(0, { severity = diagnostic.severity.WARN }))
+	local err = vim.tbl_count(diagnostic.get(0, { severity = diagnostic.severity.ERROR }))
+	local hi = vim.tbl_count(diagnostic.get(0, { severity = diagnostic.severity.HINT }))
 	local count = inf + war + err + hi
 	if count <= 0 then
 		return false
